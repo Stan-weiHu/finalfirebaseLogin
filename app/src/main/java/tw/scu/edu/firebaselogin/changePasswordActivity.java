@@ -65,7 +65,7 @@ public class changePasswordActivity extends AppCompatActivity
                     EditText text2=findViewById(R.id.passwordTypeAgain);
                     text.setText("");
                     text2.setText("");
-                    textView.setText("不一致");
+                    textView.setText("The two password num aren't same! \nplease try again");
                 }
                
                 else ChangePassword(newpassword);

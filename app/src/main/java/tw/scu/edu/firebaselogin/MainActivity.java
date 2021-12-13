@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
     EditText password;
     Button btn;
     Button logInBtn;
-    String mail;
+    //String mail;
     FirebaseAuth myAuth;
     TextView resultText;
     @Override
@@ -38,10 +38,11 @@ public class MainActivity extends AppCompatActivity
         ini();
         btn.setOnClickListener(new View.OnClickListener()
         {
+
             @Override
             public void onClick(View v)
             {
-                createAccount();
+                 createAccount();
             }
         });
         logInBtn.setOnClickListener(new View.OnClickListener()
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         //btn.getBackground().setColorFilter(0xFF000000, android.graphics.PorterDuff.Mode.MULTIPLY );
         resultText=findViewById(R.id.resultText);
         logInBtn=findViewById(R.id.loginbutton);
-        logInBtn.setEnabled(false);
+
     }
     void createAccount()
     {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                 {
                     FirebaseUser user=myAuth.getCurrentUser();
                     resultText.setText(user.getEmail()+"註冊成功!");
-                    logInBtn.setEnabled(true);
+
                     InputMethodManager inputManager =
                             (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("password",password.getText().toString());
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 
 }

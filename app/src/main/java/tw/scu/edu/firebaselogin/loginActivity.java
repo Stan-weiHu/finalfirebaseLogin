@@ -41,14 +41,15 @@ public class loginActivity extends AppCompatActivity
 
         Bundle bundle = getIntent().getExtras();
         getSupportActionBar().hide();
-        String account = bundle.getString("account" );
-        String password = bundle.getString("password");
-        ini(account);
+        //String account = bundle.getString("account" );
+        //String password = bundle.getString("password");
+        ini();//account);
         btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+
                 InputMethodManager inputManager =
                         (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -64,7 +65,7 @@ public class loginActivity extends AppCompatActivity
                     // Hide the KeyBoard
                     inputManager.hideSoftInputFromWindow(windowToken, hideType);
                 }
-                myAuth.signInWithEmailAndPassword(account,passwordt.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                myAuth.signInWithEmailAndPassword(accountt.getText().toString(),passwordt.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
@@ -73,9 +74,10 @@ public class loginActivity extends AppCompatActivity
                         {
                             Intent intent = new Intent();
                             intent.setClass(loginActivity.this, HelloActivity.class);
+
                             Bundle bundle = new Bundle();
-                            bundle.putString("account",account);
-                            bundle.putString("password",password);
+                            bundle.putString("account",accountt.getText().toString());
+                            bundle.putString("password",passwordt.getText().toString());
                             intent.putExtras(bundle);
                             startActivity(intent);
                         }
@@ -89,11 +91,11 @@ public class loginActivity extends AppCompatActivity
             }
         });
     }
-    void ini(String account)
+    void ini()//String account)
     {
         this.accountt=findViewById(R.id.passwordNew);
         this.passwordt=findViewById(R.id.passwordTypeAgain);
-        this.accountt.setText(account);
+        //this.accountt.setText(account);
         this.passwordt.setText("");
         btn=findViewById(R.id.submitBtn);
         myAuth=FirebaseAuth.getInstance();
